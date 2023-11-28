@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2023 at 07:30 AM
+-- Generation Time: Nov 28, 2023 at 02:03 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -67,7 +67,8 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (2, 1, 2),
 (3, 2, 2),
 (5, 1, 3),
-(6, 2, 3);
+(6, 2, 3),
+(7, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,8 @@ CREATE TABLE `user_menu` (
 INSERT INTO `user_menu` (`id`, `menu`) VALUES
 (1, 'Admin'),
 (2, 'User'),
-(3, 'Sewa');
+(3, 'Berita'),
+(4, 'Pengajuan');
 
 -- --------------------------------------------------------
 
@@ -128,11 +130,13 @@ CREATE TABLE `user_sub_menu` (
 --
 
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`) VALUES
-(1, 1, 'Dashboard', 'admin', 'fas fa-fw fa-tachometer-alt', 1),
+(1, 1, 'News Verification', 'admin', 'fas fa-fw fa-tasks', 1),
 (2, 2, 'My Profile', 'user', 'fas fa-fw fa-user', 1),
 (3, 2, 'Edit Profile', 'user/editprofile', 'fas fa-fw fa-user-edit', 1),
-(5, 3, 'Sewa Lapangan', 'sewa', 'fas fa-fw fa-shopping-cart', 1),
-(6, 2, 'Change Password', 'user/changepassword', 'fas fa-fw fa-key', 1);
+(5, 3, 'Berita', 'berita', 'far fa-fw fa-newspaper', 1),
+(6, 2, 'Change Password', 'user/changepassword', 'fas fa-fw fa-key', 1),
+(7, 1, 'Post Berita', 'admin/tambah_berita', 'far fa-fw fa-plus-square', 1),
+(8, 4, 'Pengajuan Berita', 'pengajuan', 'fas fa-fw fa-paper-plane', 1);
 
 --
 -- Indexes for dumped tables
@@ -182,7 +186,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
@@ -200,7 +204,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
