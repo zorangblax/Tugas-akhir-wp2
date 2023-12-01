@@ -4,9 +4,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fa fa-solid fa-futbol" style="color: #0a0f18;"></i>
+            <i class="fas fa-newspaper" style="color: #0a0f18;"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">WPU Admin</div>
+        <div class="sidebar-brand-text mx-3">News</div>
     </a>
 
     <!-- Divider -->
