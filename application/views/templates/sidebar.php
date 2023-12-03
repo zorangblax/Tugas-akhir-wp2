@@ -1,8 +1,8 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('berita') ?>">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-newspaper" style="color: #0a0f18;"></i>
         </div>
@@ -12,7 +12,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider ">
 
-    <!--Query-->
+    <!--Query join table ama atur foreign keynya-->
     <?php
     $role_id = $this->session->userdata('role_id');
     $queryMenu = "SELECT `user_menu`.`id`,`menu`

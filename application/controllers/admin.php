@@ -74,44 +74,42 @@ class admin extends CI_Controller
     {
         $this->load->library('upload'); // Load upload library
 
-        // Configuration for file upload
+        // Atur file di upload
         $config['upload_path'] = './assets/img/news/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 6040; // Adjust as needed
-        $this->upload->initialize($config); // Initialize upload
+        $config['max_size'] = 6040;
+        $this->upload->initialize($config); // di Initialize upload
 
-        if (!$this->upload->do_upload('image')) { // Upload new image
-            // Check if no file is uploaded
-            if ($_FILES['image']['size'] == 0 && $_FILES['image']['error'] == 4) {
-                // No file uploaded, keep the old image
+        if (!$this->upload->do_upload('image')) { //baris ini buat upload gambar baru tapi sebelum itu di cek
+            // apakah dia mau ngubah gambar lama atau tidak
+            if ($_FILES['image']['size'] == 0 && $_FILES['image']['error'] == 4) //$_FILES['image']['size'] == 0 memeriksa apakah ukuran file yang diunggah adalah 0 byte. 
+            // $_FILES['image']['error'] == 4 teru kalo ini kalo kode error 4 itu  menunjukkan bahwa tidak ada file yang diunggah.
+            {
+                // jika if diatas berhasil jalanin kodingan dibawah
                 $id = $this->input->post('id');
                 $title = $this->input->post('title');
                 $data = [
                     'title' => $this->input->post('title'),
+                    'id_kategori' => $this->input->post('category'),
                     'body' => $this->input->post('body'),
                     'slug' => url_title($title)
-                    // No 'image' key here to keep the old image
+                    // nah disini gk ada image
                 ];
 
-                $this->news_model->save_edit_news($id, $data); // Update data without changing the image
+                $this->news_model->save_edit_news($id, $data); // Update data tanpa ganti image
                 redirect('admin/');
             } else {
-                // Handle upload errors
                 $error = array('error' => $this->upload->display_errors());
-                // Load your view with the error message
             }
         } else {
             // Get upload data
-            $upload_data = $this->upload->data();
+            $upload_data = $this->upload->data(); //data disini berisi tentang upload an nya
 
-            // Rest of the logic to update data with the new image
-
-
-            // Get existing image name
+            // ambil gambar yg ada
             $id = $this->input->post('id');
-            $existing_image = $this->news_model->get_image_name($id);
+            $existing_image = $this->news_model->get_image_name($id); //mendapatkan nama gambar terkait dengan ID yang ada di model news_model
 
-            // Delete existing image file
+            // apus gambar yang telah di ganti
             if ($existing_image && file_exists('./assets/img/news/' . $existing_image)) {
                 unlink('./assets/img/news/' . $existing_image);
             }

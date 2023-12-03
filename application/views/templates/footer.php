@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; WPU Login <?= date('Y', $user['date_created']); ?></span>
+            <span>Copyright &copy; News <?= date('Y', $user['date_created']); ?></span>
         </div>
     </div>
 </footer>
@@ -73,6 +73,24 @@
         });
 </script>
 
+<script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Mencegah pengiriman formulir secara langsung
+
+        // Ambil nilai dari select dan input
+        var selectValue = document.getElementById('kategorijava').value;
+        var inputValue = document.getElementById('keyword').value;
+
+        // Gabungkan nilai select dengan nilai input (misalnya dengan tanda hubung '-')
+        var combinedValue = selectValue + ' ' + inputValue;
+
+        // Setel nilai input dengan nilai gabungan
+        document.getElementById('keyword').value = combinedValue;
+
+        // Sekarang formulir siap untuk dikirim dengan nilai yang digabungkan
+        this.submit(); // Submit formulir
+    });
+</script>
 
 
 </body>

@@ -15,8 +15,18 @@
 
 
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="title" name="title" value="<?= $news['title'];  ?>">
+                    <input type="text" class="form-control" id="title" name="title" value="<?= $news['title'];  ?>" autocomplete="off">
                     <?= form_error('title', '<small class="text-danger pl-3">', '</small>'); ?>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label">Kategori</label>
+                <div class="col-sm-5">
+                    <select class="custom-select" name="category" id="category">
+                        <option value="1" <?php if ($news['id_kategori'] === "1") echo "selected"; ?>> Politik</option>
+                        <option value="2" <?php if ($news['id_kategori'] === "2") echo "selected"; ?>> Olahraga</option>
+                        <option value="3" <?php if ($news['id_kategori'] === "3") echo "selected"; ?>> Lainnya</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">

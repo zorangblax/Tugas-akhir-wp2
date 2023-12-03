@@ -5,9 +5,9 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $news['title']; ?></h1>
     <div class="row">
 
-        <img src="<?= base_url('assets/img/news/') . $news['image']; ?>" class="mx-auto d-block">
+        <img src="<?= base_url('assets/img/news/') . $news['image']; ?>" class="mx-auto d-block img-fluid">
         <div class="col-lg-10">
-            <p class="info"><?= $news['body']; ?></p>
+            <p><?= $news['body']; ?></p>
         </div>
 
     </div>

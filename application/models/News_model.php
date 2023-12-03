@@ -6,9 +6,12 @@ class News_model extends CI_Model
     public function get_news($slug = false)
     {
         if ($slug == false) {
-            $this->db->order_by('created', 'DESC');
+
+            $this->db->order_by('created', 'DESC');                                       //join tabel terus perlihatkan secara descending
+            $this->db->join('category', 'category.id_kategori=news.id_kategori', 'left'); //
             return $this->db->get('news')->result_array();
         }
+        $this->db->join('category', 'category.id_kategori=news.id_kategori', 'left');
         return $this->db->get_where('news', array('slug' => $slug))->row_array();
     }
     public function save_news()
@@ -29,6 +32,7 @@ class News_model extends CI_Model
         $title = $this->input->post('title');
         $data = [
             'title' => $this->input->post('title'),
+            'id_kategori' => $this->input->post('category'),
             'body' => $this->input->post('body'),
             'image' => $gambar,
             'slug' => url_title($title)
@@ -44,6 +48,7 @@ class News_model extends CI_Model
     }
     public function edit_news($id)
     {
+        $this->db->join('category', 'category.id_kategori=news.id_kategori', 'left');
         return $this->db->get_where('news', ['id' => $id])->row_array();
     }
     public function get_image_name($id)
@@ -62,8 +67,14 @@ class News_model extends CI_Model
         $this->db->update('news', $data);
     }
 
-    public function getlistnews($limit, $start)
+    public function getlistnews($limit, $start, $keyword = null)
     {
+        $this->db->join('category', 'category.id_kategori=news.id_kategori', 'left');
+        if ($keyword) {
+            $this->db->like('title', $keyword);
+            $this->db->or_like('kategori', $keyword);
+        }
+
         $this->db->order_by('created', 'DESC'); // Mengurutkan data berdasarkan tanggal_pembuatan secara descending
         $this->db->limit($limit, $start); // Menentukan limit data dan start    
         return $this->db->get('news')->result_array();

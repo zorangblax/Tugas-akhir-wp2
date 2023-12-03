@@ -5,7 +5,7 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
 
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col">
             <a class="btn btn-primary mb-4" href="<?= base_url('admin/tambah') ?>" role="button">Tambah Berita</a>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -18,6 +18,7 @@
                                 <tr>
                                     <th>nomor</th>
                                     <th>Judul</th>
+                                    <th>kategori</th>
                                     <th>created</th>
                                     <th>Setting</th>
                                 </tr>
@@ -29,7 +30,8 @@
                                     <tr>
                                         <td><?= $no++ ?></td>
                                         <td><?= $news_item['title'] ?></td>
-                                        <td><?= $news_item['created'] ?></td>
+                                        <td><?= $news_item['kategori'] ?></td>
+                                        <td><?= date("d F Y", strtotime($news_item['created'])); ?></td>
                                         <td>
                                             <a href="<?= base_url('admin/edit_data/'); ?><?= $news_item['id']; ?>" class="badge badge-primary">Edit</a>
                                             <a href="<?= base_url('admin/hapus_data/'); ?><?= $news_item['id']; ?>" class="badge badge-danger">Hapus</a>
